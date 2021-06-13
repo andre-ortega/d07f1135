@@ -2,8 +2,6 @@ alias orteg='cd /mnt/c/users/orteg/desktop/'
 alias coursework='cd /mnt/c/users/orteg/desktop/coursework'
 alias tlpi='cd /mnt/c/users/orteg/desktop/coursework/TheLinuxProgrammingInterface/'
 
-#alias make= "make | awk '{printf " %-4s %-3s %-24s %-30s\n", $1, $2, $3, $4}'"
-
 alias tmux='tmux -2'
 
 alias c='clear'
