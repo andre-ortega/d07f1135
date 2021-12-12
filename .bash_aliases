@@ -39,5 +39,5 @@ function backupConfs {
 	echo ${value}
 	cmd="git push https://SanSantas:${value}@github.com/SanSantas/BackupConfigs.git"
 	eval "$cmd"
-
+	echo "Completed"
 }
