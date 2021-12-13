@@ -22,6 +22,9 @@ alias rmout='rm a.out'
 
 alias backupConfs='~/BackupConfigs/importConf.py'
 
+alias gstat='git status'
+alias gac='git add -A; git commit -m'
+
 function apt-updater {
     sudo apt-get update &&
     sudo apt-get dist-upgrade -Vy &&
@@ -33,6 +36,6 @@ function apt-updater {
 function gitsend {
     value=`cat ~/Documents/notes/git.txt`
     echo ${value}
-    cmd="git push https://sansantas:${value}@github.com/sansantas/dredotcom.git"
+    cmd="git push https://sansantas:${value}@github.com/sansantas/DreDotCom.git"
     eval "$cmd"
 }
