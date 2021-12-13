@@ -20,10 +20,13 @@ alias vim='vim.gtk3'
 alias out='./a.out'
 alias rmout='rm a.out'
 
-alias backupConfs='~/BackupConfigs/importConf.py'
+# Config backup shellscripts
+alias backupConfs='~/BackupConfigs/getConfs.py'
 
 alias gstat='git status'
 alias gac='git add -A; git commit -m'
+
+alias gruvConf='cmd.exe /C start C:\\Users\\orteg\\AppData\\Roaming\\Hyper\\.hyper_plugins\\node_modules\\hyper-gruvbox\\index.js'
 
 function apt-updater {
     sudo apt-get update &&
@@ -36,6 +39,6 @@ function apt-updater {
 function gitsend {
     value=`cat ~/Documents/notes/git.txt`
     echo ${value}
-    cmd="git push https://sansantas:${value}@github.com/SanSantas/DreDotCom.git"
+    cmd="git push https://SanSantas:${value}@github.com/SanSantas/DreDotCom.git"
     eval "$cmd"
 }
