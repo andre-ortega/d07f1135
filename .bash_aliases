@@ -36,6 +36,6 @@ function apt-updater {
 function gitsend {
     value=`cat ~/Documents/notes/git.txt`
     echo ${value}
-    cmd="git push https://sansantas:${value}@github.com/sansantas/DreDotCom.git"
+    cmd="git push https://sansantas:${value}@github.com/SanSantas/DreDotCom.git"
     eval "$cmd"
 }
