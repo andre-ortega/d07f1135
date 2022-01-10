@@ -9,6 +9,7 @@ homeDir = '/home/sansantas/'
 backupsDir = '/home/sansantas/BackupConfigs/'
 
 backups = os.scandir(backupsDir)
+
 for entry in backups:
     names.append(entry.name)
 
