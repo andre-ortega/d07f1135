@@ -1,4 +1,4 @@
-" SanSantas .vimrc
+" SanSantas Vim Config File
 " Custom Config File for the only editor I ever really wanted to learn.
 
 set nocompatible	
