@@ -15,6 +15,6 @@ eval "$gitCmd"
 value=`cat ~/Documents/notes/git.txt`
 
 # Generate push command
-cmd="git push https://SanSantas:${value}@github.com/SanSantas/BackupConfigs.git"
+cmd="git push https://andre-ortega:${value}@github.com/andre-ortega/BackupConfigs.git"
 
 eval "$cmd"

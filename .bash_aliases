@@ -59,7 +59,7 @@ function gitsend {
     printf '\033[0;34m'
     value=`cat ~/Documents/notes/git.txt`
     repo=`basename $(git rev-parse --show-toplevel)`
-    cmd="git push https://SanSantas:${value}@github.com/SanSantas/${repo}.git"
+    cmd="git push https://andre-ortega:${value}@github.com/andre-ortega/${repo}.git"
     eval "$cmd"
     printf '\033[0m'
 }
