@@ -49,6 +49,7 @@ alias gruvConf='cmd.exe /C start C:\\Users\\orteg\\AppData\\Roaming\\Hyper\\.hyp
 # Gitties
 alias gstat='git status'
 alias gac='git add -A; git commit -m'
+alias apply-gitignore='git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached'
 
 function foo {
     repo=`basename $(git rev-parse --show-toplevel)`
