@@ -15,6 +15,7 @@ eval "$gitCmd"
 value=`cat ~/Git/token/token`
 
 # Generate push command
-cmd="git push https://andre-ortega:${value}@github.com/andre-ortega/BackupConfigs.git"
+#cmd="git push https://andre-ortega:${value}@github.com/andre-ortega/BackupConfigs.git"
+cmd="git push"
 
 eval "$cmd"
