@@ -33,7 +33,7 @@ alias walls="cd /home/roe/pix/wall/"
 function psh { echo $PWD > $HOME/.config/psh/dir; }
 function psha { cd $(cat $HOME/.config/psh/dir); }
 alias screenshot="mkdir -p $HOME/pix/screenshots && scrot $HOME/pix/screenshots/%m-%d-%Y-%H%M%S.png"
-alias clock="while :; do date +%I:%M | figlet -f swampland; sleep 5; sleep 1; done"
+alias clock="while :; do date +%I:%M | figlet -f pepper; sleep 5; sleep 1; done"
 alias drega="cd ~/git/drega"
 alias run="cargo run"
 alias rs="cd ~/git/rust-tuts/rust-book/"
