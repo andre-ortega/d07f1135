@@ -7,7 +7,7 @@ export ZSH="$HOME/.oh-my-zsh"
 function roesend () {
   echo "sending $1 to ROE"
   sleep 1
-  rsync -r --progress $1 roe@192.168.0.124:/home/roe/Downloads
+  rsync -r --progress $1 roe@192.168.0.103:/home/roe/Downloads
 }
 
 # Set name of the theme to load --- if set to "random", it will
@@ -153,6 +153,8 @@ alias lib='cd ~/lib'
 alias pix='cd ~/pix'
 alias skps='cd ~/skps'
 alias config='cd ~/.config'
+alias drega="cd ~/git/drega"
+alias suckless="cd ~/git/suckless-drega"
 
 alias notes='cd ~/dox/notes2'
 
@@ -172,7 +174,6 @@ function bl {
 }
 alias screenshot="mkdir -p $HOME/pix/screenshots && scrot $HOME/pix/screenshots/%m-%d-%Y-%H%M%S.png"
 alias clock="while :; do date +%I:%M | figlet -f pepper; sleep 5; sleep 1; done"
-alias drega="cd ~/git/drega"
 alias run="cargo run"
 
 # fatfinger
@@ -228,15 +229,14 @@ if [[ ! -z $(pgrep dwm) ]]; then
   # if tmux run sara
   if { [ "$TERM" = "tmux-256color" ] && [ ! -z ${TMUX+x} ] ; } then
   # Optional
-  # $HOME/git/title-sara/sara
-  # if no tmux omg please start tmux
+    $HOME/git/title-sara/sara
+  # if no tmux please start tmux
   else
     tmux
   fi
 fi
 
 # Screens
-
 #xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --mode 2560x1440 --right-of DP-1
 
 # if file ~/.saraexit exits
