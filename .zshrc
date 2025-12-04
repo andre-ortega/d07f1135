@@ -7,14 +7,14 @@ export ZSH="$HOME/.oh-my-zsh"
 function roesend () {
   echo "sending $1 to ROE"
   sleep 1
-  rsync -r --progress $1 roe@192.168.0.124:/home/roe/Downloads
+  rsync -r --progress $1 roe@192.168.0.103:/home/roe/Downloads
 }
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="fwalch"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -113,7 +113,8 @@ alias zshconf="source ~/.zshrc"
 bindkey "^R" history-incremental-search-backward
 
 # History
-export HISTFILE=$ZDOTDIR/.host_zsh
+#export HISTFILE=$ZDOTDIR/.host_zsh
+export HISTFILE=$HOME/.host_zsh
 export HISTSIZE=5000000
 export SAVEHIST=$HISTSIZE
 
@@ -124,65 +125,167 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt SHARE_HISTORY
+setopt NO_NOTIFY
 
 # END HISTORY
+
+RED='\e[31m'
+RESET='\e[0m'
+
 
 # Please add these doodads to PATH
 alias newlook=~/.local/bin/newlook
 alias dynamake=~/.local/bin/dynamake
 alias gitty=~/.local/bin/gitty
 alias colortest=~/.local/bin/colortest
-alias sara=~/.local/bin/sara
-alias passport='sudo mount /dev/sda1 /mnt/passport'
-
+alias sara="cd ~/git/title-sara/"
+alias saran="echo \"fastfetch\nfor i in {1..23}\ndo\necho\ndone\" | /usr/bin/bash"
+alias passport='sudo mount /dev/sdc1 /mnt/passport'
 # TODO add skps to path
 
-alias la='ls -a'
-alias ll='ls -la'
-alias l='ls -1a'
-alias sl='ls'
+alias matrix='tmatrix -c default -t SARA --no-fade -s 20'
+alias screenkey='screenkey --window -s small --font-color "#c7adbd"'
+
+alias la='ls -A'
+alias ll='ls -l'
+alias l='ls -1'
+alias sl='ls --color=tty'
 
 # nav
-alias notes='cd ~/dox/notes2'
-alias tasks='vim ~/dox/notes2/tasks'
 alias dls='cd ~/dls'
-alias skps='cd ~/skps'
+alias Dow='cd ~/Downloads'
+alias D='cd ~/Downloads'
+alias dox='cd ~/dox'
 alias gits='cd ~/git'
+alias lib='cd ~/lib'
+alias pix='cd ~/pix'
+alias mzk='cd ~/mzk'
+alias skps='cd ~/skps'
+alias rusties="cd ~/git/rust-book/projects"
+alias suckless="cd ~/git/suckless-drega"
 
-alias confs='vim -p ~/.zshrc ~/.tmux.conf ~/.vimrc'
-alias commands='vim ~/dox/notes/linux/commands'
+alias notes='cd ~/dox/.notes'
+
 alias backupConfs='~/git/backup-configs/getConfs.py'
 alias startproxy='ssh -D 1337 -N -C node'
 #alias startshare='mkdir /tmp/networkshare; chmod 777 /tmp/networkshare; ~/.local/bin/remount.sh'
 #alias rmshare='rm -rf /tmp/networkshare/*'
-alias rsync='rsync -r --progress'
 alias walls="cd /home/roe/pix/wall/"
-function psh { echo $PWD > $HOME/.config/psh/dir; }
-function psha { cd $(cat $HOME/.config/psh/dir); }
-alias screenshot="mkdir -p $HOME/pix/screenshots && scrot $HOME/pix/screenshots/%m-%d-%Y-%H%M%S.png"
-alias clock="while :; do date +%I:%M | figlet -f pepper; sleep 5; sleep 1; done"
-alias drega="cd ~/git/drega"
-alias run="cargo run"
-# tmatrix-git
-alias matrix='tmatrix -c default -t SARA --no-fade -s 20'
+alias pingg="ping 8.8.8.8"
+alias xc="xcolor"
 
-# fatfingers
-alias rs="cd ~/git/rust-tuts/rust-book/"
+function pshd {
+  if (( $# > 0 )); then
+    args=("$@")
+    re='^[0-9]+$'
+    if [ "$1" = "-l" ] || [ "$1" = "-q" ]; then
+      counter=0
+      while read p; do
+        echo "[$counter] $p"
+        ((counter++))
+      done <$HOME/.config/psh/dir
+    elif [ "$1" = "--" ]; then
+      cd $(head -n 1 $HOME/.config/psh/dir)
+    elif [ "$1" = "-e" ]; then
+      nvim $HOME/.config/psh/dir
+    elif [[ $1 =~ $re ]] ; then
+      counter=0
+      while read dir; do
+        if [[ counter -eq $1 ]] ; then
+          cd "$dir"
+        fi
+        ((counter++))
+      done <$HOME/.config/psh/dir
+    elif [[ $1 =~ "-p" ]] ; then
+      echo $PWD | cat - $HOME/.config/psh/dir > $HOME/.config/psh/temp
+      mv $HOME/.config/psh/temp $HOME/.config/psh/dir
+      awk '!seen[$0]++' $HOME/.config/psh/dir > $HOME/.config/psh/temp
+      mv $HOME/.config/psh/temp $HOME/.config/psh/dir
+      head -n 10 $HOME/.config/psh/dir > $HOME/.config/psh/temp
+      mv $HOME/.config/psh/temp $HOME/.config/psh/dir
+    else
+      echo "no-op"
+    fi
+  else
+    counter=0
+    while read p; do
+      echo "[$counter] $p"
+      ((counter++))
+    done <$HOME/.config/psh/dir
+  fi
+}
+
+alias screenshot="sleep 5 && mkdir -p $HOME/pix/screenshots && scrot $HOME/pix/screenshots/%m-%d-%Y-%H%M%S.png"
+alias clock="while :; do date +%I:%M | figlet -f pepper; sleep 5; sleep 1; done"
+alias cr="cargo run"
+
+# fatfinger
 alias dc="cd"
+
+# wider
+alias rsync='rsync -r --progress'
+alias bat='bat --theme base16-256'
 
 # oneshots
 alias x='startx'
-alias n="neofetch"
+alias n="fastfetch"
 alias c="colortest"
-alias s="grep -rin"
+alias s="grep -riIn --exclude-dir node_modules --exclude-dir target"
 alias e="env | sort"
+alias g="git status -s"
+#alias t='vim ~/dox/notes2/tasks' # AKA alias tasks
+#alias p='$HOME/.config/polybar/bar.sh'
+alias m='tmatrix -c default -t SARA --no-fade -s 10'
+alias t='tree -I target -I node_modules'
+
 alias b="bluetoothctl connect AC:80:0A:19:89:A8"
-alias t='tree'
+alias bd="bluetoothctl disconnect AC:80:0A:19:89:A8"
 
 # fast find
 function f {
   find . -iname "*$1*"
 }
+
+function pw {
+  gpg --symmetric --output $HOME/.config/pw.gpg # [enter] then ^D to quit
+}
+
+export SUDO_ASKPASS=$HOME/skps/secret.sh
+# sudo password storage
+function sudo {
+  if [[ -f "$HOME/.config/pw.gpg" ]]; then
+    command sudo --askpass "$@"
+  else
+    command sudo "$@"
+  fi
+}
+
+# faster backlight adjustments
+function bl {
+  if (( $# > 0 )); then
+    output=$(stat -c "%a" /sys/class/backlight/intel_backlight/brightness)
+    if [ "$output" = "666" ]; then
+      echo $1 > /sys/class/backlight/intel_backlight/brightness
+    else
+      sudo chmod 666 /sys/class/backlight/intel_backlight/brightness
+      echo $1 > /sys/class/backlight/intel_backlight/brightness
+    fi
+  else
+    cat /sys/class/backlight/intel_backlight/actual_brightness
+  fi
+}
+
+function shweep {
+  if [[ -f "$HOME/skps/cleanup.sh" ]]; then
+    source $HOME/skps/cleanup.sh
+  else
+    echo "Cleanup script not detected!"
+    sleep 2
+  fi
+  shutdown now
+}
+
+alias weather='curl wttr.in'
 
 # old volume controls when knob isn't available
 #alias v="pactl set-sink-volume @DEFAULT_SINK@ +5%"
@@ -193,28 +296,33 @@ alias vi="/usr/bin/vim"
 alias vim="/usr/bin/nvim"
 alias vimall="/usr/bin/nvim -p ./*"
 
-alias zap="kill -9 "
-
-#gits
-alias g='git status -s'
-alias gs='git status'
-alias gc='git commit -m'
-alias ga='git add'
-alias gaa='git add --all'
+# nav to git project root
 alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
-alias gl='git log --all --decorate --graph --oneline'
-alias gp='git push'
-alias gdmh='git diff main..HEAD'
-alias gdh='git diff HEAD'
-alias gdhh='git diff HEAD~1..HEAD'
 
-# if running DWM
+# git conf?
+alias gs="git status"
+alias gdh="git diff HEAD"
+alias gdhh='git diff HEAD~1..HEAD'
+alias gdmh='git diff main..HEAD'
+
+# Screens
+#xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --mode 2560x1440 --right-of DP-1
+
+# Lastly, launch tmux/SARA
 if [[ ! -z $(pgrep dwm) ]]; then
-  # and tmux
+  # if tmux run sara
   if { [ "$TERM" = "tmux-256color" ] && [ ! -z ${TMUX+x} ] ; } then
-#   sara
-  # if no tmux run tmux I literally cannot function without it
+  # Optional
+    $HOME/git/title-sara/sara
+  # if no tmux please start tmux
   else
     tmux
+  fi
+else
+  if [ "$TERM" = "linux" ] ; then
+    wal --theme custom-sara_white
+    $HOME/git/title-sara/sara
+  elif [ "$TERM" = "tmux-256color" ] ; then
+    $HOME/git/title-sara/sara
   fi
 fi
