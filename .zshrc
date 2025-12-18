@@ -233,13 +233,14 @@ alias c="colortest"
 alias s="grep -riIn --exclude-dir node_modules --exclude-dir target"
 alias e="env | sort"
 alias g="git status -s"
+alias gs="git status"
+alias gdh="git diff HEAD"
+alias b="bluetoothctl connect AC:80:0A:19:89:A8"
+alias bd="bluetoothctl disconnect AC:80:0A:19:89:A8"
 #alias t='vim ~/dox/notes2/tasks' # AKA alias tasks
 #alias p='$HOME/.config/polybar/bar.sh'
 alias m='tmatrix -c default -t SARA --no-fade -s 10'
 alias t='tree -I target -I node_modules'
-
-alias b="bluetoothctl connect AC:80:0A:19:89:A8"
-alias bd="bluetoothctl disconnect AC:80:0A:19:89:A8"
 
 # fast find
 function f {
@@ -298,10 +299,6 @@ alias vimall="/usr/bin/nvim -p ./*"
 
 # nav to git project root
 alias grt='cd "$(git rev-parse --show-toplevel || echo .)"'
-
-# git conf?
-alias gs="git status"
-alias gdh="git diff HEAD"
 alias gdhh='git diff HEAD~1..HEAD'
 alias gdmh='git diff main..HEAD'
 
