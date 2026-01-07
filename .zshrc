@@ -236,6 +236,7 @@ alias bd="bluetoothctl disconnect AC:80:0A:19:89:A8"
 #alias p='$HOME/.config/polybar/bar.sh'
 alias m='tmatrix -c default -t SARA --no-fade -s 10'
 alias t='tree -I target -I node_modules'
+alias p='pshd'
 
 # fast find
 function f {
@@ -302,6 +303,7 @@ alias gdmh='git diff main..HEAD'
 
 function saraexit {
   cat $HOME/.cache/sara/saraexit
+  rm -f $HOME/.cache/sara/saraexit
 }
 
 # Lastly, launch tmux/SARA
@@ -309,7 +311,7 @@ if [[ ! -z $(pgrep dwm) ]]; then
   # if tmux run sara
   if { [ "$TERM" = "tmux-256color" ] && [ ! -z ${TMUX+x} ] ; } then
   # Optional
-    $HOME/git/title-sara/sara -r
+    $HOME/git/title-sara/sara -r -F
   # if no tmux please start tmux
   else
     tmux
@@ -317,8 +319,8 @@ if [[ ! -z $(pgrep dwm) ]]; then
 else
   if [ "$TERM" = "linux" ] ; then
     wal --theme custom-sara_white
-    $HOME/git/title-sara/sara -r
+    $HOME/git/title-sara/sara -r -F
   elif [ "$TERM" = "tmux-256color" ] ; then
-    $HOME/git/title-sara/sara -r
+    $HOME/git/title-sara/sara -r -F
   fi
 fi
