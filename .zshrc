@@ -147,6 +147,7 @@ alias lib='cd ~/lib'
 alias pix='cd ~/pix'
 alias mzk='cd ~/mzk'
 alias skps='cd ~/skps'
+alias gmz='cd ~/gmz'
 alias rusties="cd ~/git/rust-book/projects"
 alias suckless="cd ~/git/suckless-drega"
 
